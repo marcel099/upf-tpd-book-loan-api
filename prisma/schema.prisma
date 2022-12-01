@@ -31,7 +31,7 @@ model Book {
 model Student {
   id                  String @id @default(auto()) @map("_id") @db.ObjectId
   name                String
-  registration_number String
+  registration_number Int
   loans               Loan[]
 }
 
