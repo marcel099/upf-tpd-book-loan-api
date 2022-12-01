@@ -6,3 +6,48 @@ datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
+
+model Author {
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  booksIds String[] @db.ObjectId
+}
+
+model Genre {
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  booksIds String[] @db.ObjectId
+}
+
+model Book {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  year           Int
+  number_edition Int
+  authorsIds     String[] @db.ObjectId
+  genresIds      String[] @db.ObjectId
+  loans          Loan[]
+}
+
+model Student {
+  id                  String @id @default(auto()) @map("_id") @db.ObjectId
+  name                String
+  registration_number String
+  loans               Loan[]
+}
+
+model Loan {
+  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  withdrawal_date DateTime
+  return_date     DateTime
+  renewals_amount Int
+  renewals        Renewal[]
+  student         Student   @relation(fields: [studentId], references: [id])
+  studentId       String    @db.ObjectId
+  book            Book      @relation(fields: [bookId], references: [id])
+  bookId          String    @db.ObjectId
+}
+
+type Renewal {
+  renewal_date DateTime
+  return_date  DateTime
+}
