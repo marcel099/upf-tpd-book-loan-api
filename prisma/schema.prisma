@@ -40,7 +40,6 @@ model Loan {
   id              String    @id @default(auto()) @map("_id") @db.ObjectId
   withdrawal_date DateTime
   return_date     DateTime?
-  renewals_amount Int
   renewals        Renewal[]
   student         Student   @relation(fields: [studentId], references: [id])
   studentId       String    @db.ObjectId
