@@ -13,7 +13,7 @@ model Author {
   booksIds String[] @db.ObjectId
 }
 
-model Genre {
+model Gender {
   id       String   @id @default(auto()) @map("_id") @db.ObjectId
   name     String
   booksIds String[] @db.ObjectId
@@ -24,7 +24,7 @@ model Book {
   year           Int
   number_edition Int
   authorsIds     String[] @db.ObjectId
-  genresIds      String[] @db.ObjectId
+  gendersIds     String[] @db.ObjectId
   loans          Loan[]
 }
 
