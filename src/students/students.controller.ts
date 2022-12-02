@@ -3,7 +3,7 @@ import {
   Get,
   Post,
   Body,
-  Patch,
+  Put,
   Param,
   Delete,
 } from '@nestjs/common';
@@ -37,7 +37,7 @@ export class StudentsController {
     return this.studentsService.findOne(id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   @ApiOkResponse({ type: StudentEntity })
   update(@Param('id') id: string, @Body() updateStudentDto: UpdateStudentDto) {
     return this.studentsService.update(id, updateStudentDto);

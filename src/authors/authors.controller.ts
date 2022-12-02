@@ -4,7 +4,7 @@ import {
   Get,
   Post,
   Body,
-  Patch,
+  Put,
   Param,
   Delete,
 } from '@nestjs/common';
@@ -37,7 +37,7 @@ export class AuthorsController {
     return this.authorsService.findOne(id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   @ApiOkResponse({ type: AuthorEntity })
   update(@Param('id') id: string, @Body() updateAuthorDto: UpdateAuthorDto) {
     return this.authorsService.update(id, updateAuthorDto);

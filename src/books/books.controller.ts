@@ -4,9 +4,9 @@ import {
   Post,
   Body,
   Patch,
+  Put,
   Param,
   Delete,
-  Put,
 } from '@nestjs/common';
 import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 
@@ -40,13 +40,13 @@ export class BooksController {
     return this.booksService.findOne(id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   @ApiOkResponse({ type: BookEntity })
   update(@Param('id') id: string, @Body() updateBookDto: UpdateBookDto) {
     return this.booksService.update(id, updateBookDto);
   }
 
-  @Put(':id/authors')
+  @Patch(':id/authors')
   @ApiOkResponse({ type: BookEntity })
   updateAuthorsIds(
     @Param('id') id: string,
@@ -55,7 +55,7 @@ export class BooksController {
     return this.booksService.updateAuthorsIds(id, updateBookAuthorsIdsDto);
   }
 
-  @Put(':id/genders')
+  @Patch(':id/genders')
   @ApiOkResponse({ type: BookEntity })
   updateGendersIds(
     @Param('id') id: string,

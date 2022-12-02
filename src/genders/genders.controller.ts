@@ -4,7 +4,7 @@ import {
   Get,
   Post,
   Body,
-  Patch,
+  Put,
   Param,
   Delete,
   UseInterceptors,
@@ -39,7 +39,7 @@ export class GendersController {
     return this.gendersService.findOne(id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   @ApiOkResponse({ type: GenderEntity })
   update(@Param('id') id: string, @Body() updateGenderDto: UpdateGenderDto) {
     return this.gendersService.update(id, updateGenderDto);
