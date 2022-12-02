@@ -12,7 +12,8 @@ import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { LoansService } from './loans.service';
 import { CreateLoanDto } from './dto/create-loan.dto';
 import { LoanEntity } from './entities/loan.entity';
-import { FindManyFromUserQuery } from './dto/find-many-from-user-query.dto';
+import { FindManyFromUserQueryDto } from './dto/find-many-from-user-query.dto';
+import { PrimaryFieldsDto } from './dto/primary-fields.dto';
 
 @Controller('loans')
 @ApiTags('loans')
@@ -27,7 +28,7 @@ export class LoansController {
 
   @Get()
   @ApiOkResponse({ type: LoanEntity, isArray: true })
-  findAllFromStudent(@Query() query: FindManyFromUserQuery) {
+  findAllFromStudent(@Query() query: FindManyFromUserQueryDto) {
     return this.loansService.findAllFromStudent(query.student_id);
   }
 
@@ -35,5 +36,20 @@ export class LoansController {
   @ApiOkResponse({ type: LoanEntity })
   findOne(@Param('id') id: string) {
     return this.loansService.findOne(id);
+  }
+
+  @Patch('renew')
+  renewLoan(@Query() query: PrimaryFieldsDto) {
+    return this.loansService.renewLoan(query);
+  }
+
+  @Patch('return')
+  returnBook(@Query() query: PrimaryFieldsDto) {
+    return this.loansService.returnBook(query);
+  }
+
+  @Patch('regularize-financial-situation')
+  regularizeLoanFinancialSituation(@Query() query: PrimaryFieldsDto) {
+    return this.loansService.regularizeLoanFinancialSituation(query);
   }
 }

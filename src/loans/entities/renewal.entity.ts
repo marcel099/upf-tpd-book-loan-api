@@ -5,5 +5,11 @@ export class RenewalEntity {
   renewal_date: string;
 
   @ApiProperty()
-  return_date: string;
+  return_date: string | null;
+
+  @ApiProperty()
+  fine_payment_date: string;
+
+  @ApiProperty()
+  fine_value: number;
 }

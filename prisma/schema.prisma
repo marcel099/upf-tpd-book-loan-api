@@ -39,7 +39,7 @@ model Student {
 model Loan {
   id              String    @id @default(auto()) @map("_id") @db.ObjectId
   withdrawal_date DateTime
-  return_date     DateTime
+  return_date     DateTime?
   renewals_amount Int
   renewals        Renewal[]
   student         Student   @relation(fields: [studentId], references: [id])
@@ -49,6 +49,8 @@ model Loan {
 }
 
 type Renewal {
-  renewal_date DateTime
-  return_date  DateTime
+  renewal_date      DateTime
+  return_date       DateTime?
+  fine_payment_date DateTime?
+  fine_value        Int?
 }
