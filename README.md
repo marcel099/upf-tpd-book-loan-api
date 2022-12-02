@@ -6,6 +6,13 @@
 - PrismaJS (framework ORM e ODM)
 - MongoDB (SGBD)
 
+## Modelo Entidade-Relacionamento
+
+<img
+  src="assets/book_loan_ws_er_model.drawio.png"
+  alt="Modelo entidade-Relacionamento da APi, também chamada de WebService"
+/>
+
 ## Como executar
 
 1. Baixe o código do projeto
